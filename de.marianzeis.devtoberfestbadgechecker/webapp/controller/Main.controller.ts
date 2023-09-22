@@ -19,6 +19,7 @@ export default class Main extends BaseController {
 	onPatternMatchedOnce() {
 		const mParams = new URLSearchParams(window.location.search);
 		const scnId = mParams.get("scnId");
+		this.getView().byId("input").setValue(scnId);
 		this.onGetBadgesPress(undefined, scnId);
 	}
 
