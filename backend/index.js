@@ -1,7 +1,11 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
+
+// Enable All CORS Requests
+app.use(cors());
 
 app.use(express.json()); // To parse JSON body in incoming requests
 
@@ -14,7 +18,7 @@ app.get('/checkBadges', async (req, res) => {
     }
     
     try {
-        const results = []; // To store the resulting badge object
+        const results = [];
 
         const allBadgesResponse = await axios.get('https://raw.githubusercontent.com/SAP-samples/sap-community-activity-badges/main/srv/util/badges.json');
         const allBadges = allBadgesResponse.data;

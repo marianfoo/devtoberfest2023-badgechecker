@@ -4,31 +4,37 @@
 	xmlns:core="sap.ui.core" core:require="{
 		formatter: 'de/marianzeis/devtoberfestbadgechecker/model/formatter'
 	}">
-
-	<VBox>
-		<Input value="{/scnId}" placeholder="Enter scnId" />
-		<Button text="Get Badges" press="onGetBadgesPress" />
-		<Table items="{/badges}">
-		  <columns>
-			<Column>
-			  <Text text="Badge Name" />
-			</Column>
-			<Column>
-			  <Text text="URL" />
-			</Column>
-			<Column>
-			  <Text text="Found" />
-			</Column>
-		  </columns>
-		  <items>
-			<ColumnListItem>
-			  <cells>
-				<Text text="{displayName}" />
-				<Link text="{badgeURL}" href="{badgeURL}" target="_blank" />
-				<Text text="{path: 'found', formatter: '.formatter.booleanToText'}" />
-			  </cells>
-			</ColumnListItem>
-		  </items>
-		</Table>
-	  </VBox>
+	<Page showHeader="false">
+	<VBox class="sapUiSmallMargin">
+		<Input value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" />
+		<HBox class="sapUiSmallMarginBottom">
+		<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
+		<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
+		</HBox>
+		<ScrollContainer height="100%" vertical="true" horizontal="false">
+			<Table id="table" items="{/badges}" class="sapUiResponsiveMargin">
+				<columns>
+					<Column>
+						<Text text="Badge Name" />
+					</Column>
+					<Column>
+						<Text text="URL" />
+					</Column>
+					<Column>
+						<Text text="Found" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{displayName}" />
+							<Link text="{badgeURL}" href="{badgeURL}" target="_blank" />
+							<GenericTag text="{= ${found} ? 'Badge received' : 'Badge not received'}" design="StatusIconHidden" status="{= ${found} ? 'Success' : 'Error'}"  class="sapUiSmallMarginBottom"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+	</Page>
 </mvc:View>
