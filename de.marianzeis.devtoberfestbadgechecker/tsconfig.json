@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "es2015",
+		"skipLibCheck": true,
+		"preserveConstEnums": true,
+		"sourceMap": false,
+		"allowJs": true,
+		"strict": true,
+		"strictNullChecks": false,
+		"strictPropertyInitialization": false,
+		"rootDir": "./",
+		"types": ["@openui5/types", "@types/qunit"],
+		"paths": {
+			"de/marianzeis/devtoberfestbadgechecker/*": ["./webapp/*"],
+			"unit/*": ["./webapp/test/unit/*"],
+			"integration/*": ["./webapp/test/integration/*"]
+		}
+	},
+	"include": ["./webapp/**/*"]
+}
