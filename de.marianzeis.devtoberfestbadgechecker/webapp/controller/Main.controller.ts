@@ -1,5 +1,6 @@
 import BaseController from "./BaseController";
 import MessageToast from "sap/m/MessageToast";
+import Filter from "sap/ui/model/Filter";
 import Sorter from "sap/ui/model/Sorter";
 import JSONModel from "sap/ui/model/json/JSONModel";
 
@@ -26,16 +27,13 @@ export default class Main extends BaseController {
 
 	onFilterBadges(oEvent: Event) {
 		
-		const oModel = this.getView().getModel() as JSONModel;
-		const parameters = oEvent.getParameters();
+		const table = this.byId("table");
+		const binding = table.getBinding("items");
 		const selected = oEvent.getParameter("selected")
 		if(selected){
-			const filteredBadges = this.response.filter((badge: any) => {
-				return badge.found === false;
-			});
-			oModel.setProperty("/badges", filteredBadges);
+			binding.filter(new Filter("found", "EQ", false));
 		} else {
-			oModel.setProperty("/badges", this.response);
+			binding.filter(new Filter("found", "EQ", true));
 		}
 		
 	}
