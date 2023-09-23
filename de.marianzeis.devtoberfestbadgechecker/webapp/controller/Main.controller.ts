@@ -41,6 +41,7 @@ export default class Main extends BaseController {
 	}
 
 	async onGetBadgesPress(event:any, scnIdPara?: string) {
+
 		this.getView().setBusyIndicatorDelay(0);
 		this.getView().setBusy(true);
 		const oModel = this.getView().getModel() as JSONModel;
@@ -50,6 +51,12 @@ export default class Main extends BaseController {
 			this.getView().setBusy(false);
 			return;
 		}
+		const mParams = new URLSearchParams(window.location.search);
+		mParams.set("scnId", scnId);
+		const newURL = `${window.location.origin}${
+			window.location.pathname
+		}?${mParams.toString()}`;
+		window.history.pushState({}, "", newURL);
 		try {
 			const response = await jQuery.ajax({
 				url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,

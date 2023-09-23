@@ -8,7 +8,7 @@
 	}">
 	<Page showHeader="false">
 		<VBox class="sapUiSmallMargin">
-			<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" />
+			<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" submit="onGetBadgesPress" />
 			<HBox class="sapUiSmallMarginBottom">
 				<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
 				<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
