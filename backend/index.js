@@ -37,7 +37,7 @@ app.get('/checkBadges', async (req, res) => {
     const userBadges = userBadgesResponse.data.content;
 
     allBadges.forEach((badge) => {
-      const userBadge = userBadges.find((ub) => ub.displayName.includes(badge.displayName));
+      const userBadge = userBadges.find((ub) => ub.displayName === badge.displayName);
   
       // Extracting week from tableData based on matching badgeCode with displayName
       const tableBadge = tableData.find((tb) => badge.displayName.includes(tb.badgeCode));

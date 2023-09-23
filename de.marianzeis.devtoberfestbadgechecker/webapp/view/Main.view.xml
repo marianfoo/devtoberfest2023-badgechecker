@@ -2,38 +2,59 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:plugins="sap.m.plugins"
-    xmlns:columnmenu="sap.m.table.columnmenu"
+	xmlns:l="sap.ui.layout"
+	xmlns:columnmenu="sap.m.table.columnmenu"
 	xmlns:core="sap.ui.core" core:require="{
 		formatter: 'de/marianzeis/devtoberfestbadgechecker/model/formatter'
 	}">
 	<Page showHeader="false">
-		<VBox class="sapUiSmallMargin">
-			<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" submit="onGetBadgesPress" />
-			<HBox class="sapUiSmallMarginBottom">
-				<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
-				<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
-				<Button text="Reset Sort" press="onResetSort" />
-			</HBox>
-			<ScrollContainer height="100%" vertical="true" horizontal="false">
+		<l:Grid defaultSpan="L12 M12 S12" hSpacing="0" class="sapUiSmallMarginBegin">
+			<VBox id="responsiveBox" width="{= ${device>/system/desktop} ? '60%' : '100%' }" justifyContent="Center" class="sapUiSmallMarginBegin sapUiNoMarginBottom" alignItems="Start">
+				<VBox class="sapUiSmallMarginTop" justifyContent="Center" width="{= ${device>/system/desktop} ? '60%' : '100%' }" alignItems="Start">
+					<HBox class="sapUiNoMarginBottom" justifyContent="Center" alignItems="Baseline" width="100%">
+						<Label text="SAP Community ID" class="sapUiSmallMarginEnd">
+							<layoutData>
+								<FlexItemData baseSize='30%'/>
+							</layoutData>
+						</Label>
+						<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" submit="onGetBadgesPress">
+							<layoutData>
+								<FlexItemData baseSize='70%'/>
+							</layoutData>
+						</Input>
+					</HBox>
+					<HBox class="sapUiSmallMarginBottom">
+						<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
+						<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
+
+					</HBox>
+					<HBox class="sapUiSmallMarginBottom">
+						<Button text="Reset Sorting" press="onResetSort" />
+					</HBox>
+					<HBox class="sapUiNoMarginBottom">
+						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" />
+					</HBox>
+				</VBox>
+			</VBox>
+			<ScrollContainer height="100%" vertical="true" horizontal="false" class="sapUiNoMarginBegin sapUiTinyMarginEnd">
 				<Table id="table" items="{
 				path: '/badges',
 				sorter : {
 					path : 'week',
 					group : true
-				}}" 
-				class="sapUiResponsiveMargin">
+				}}" class="sapUiResponsiveMargin">
 
 					<columns>
-						<Column id="displayName" headerMenu="menu">
+						<Column id="displayName" headerMenu="menu" width="40%">
 							<Text text="Badge Name" />
 						</Column>
-						<Column id="badgeURL" headerMenu="menu">
+						<Column id="badgeURL" headerMenu="menu" width="13%">
 							<Text text="URL" />
 						</Column >
-						<Column id="found" headerMenu="menu">
-							<Text text="Found" />
+						<Column id="found" headerMenu="menu" width="30%">
+							<Text text="Badge" />
 						</Column>
-						<Column id="points" headerMenu="menu">
+						<Column id="points" headerMenu="menu" width="17%">
 							<Text text="Points" />
 						</Column>
 					</columns>
@@ -42,8 +63,8 @@
 						<ColumnListItem>
 							<cells>
 								<Text text="{displayName}" />
-								<Link text="{badgeURL}" href="{badgeURL}" target="_blank" />
-								<GenericTag text="{= ${found} ? 'Badge received' : 'Badge not received'}" design="StatusIconHidden" status="{= ${found} ? 'Success' : 'Error'}" class="sapUiSmallMarginBottom"/>
+								<Link text="Link" href="{badgeURL}" target="_blank" />
+								<ObjectStatus class="sapUiSmallMarginBottom" text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>
 								<Text text="{points}" />
 							</cells>
 						</ColumnListItem>
@@ -51,7 +72,7 @@
 
 					<dependents>
 						<plugins:ColumnResizer/>
-						<columnmenu:Menu id="menu"  beforeOpen="beforeOpenColumnMenu">
+						<columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
 							<columnmenu:QuickSort change="onSort">
 								<columnmenu:items>
 									<columnmenu:QuickSortItem></columnmenu:QuickSortItem>
@@ -61,6 +82,7 @@
 					</dependents>
 				</Table>
 			</ScrollContainer>
-		</VBox>
+
+		</l:Grid>
 	</Page>
 </mvc:View>

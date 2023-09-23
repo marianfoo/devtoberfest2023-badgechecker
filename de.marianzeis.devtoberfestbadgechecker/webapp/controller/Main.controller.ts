@@ -12,7 +12,7 @@ export default class Main extends BaseController {
 	
 	onInit () {
 		// Set initial model
-		this.getView().setModel(new JSONModel({ badges: [], scnId: "" }));
+		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "" }));
 		this.getRouter()
 			.getRoute("main")
 			.attachEventOnce("patternMatched", this.onPatternMatchedOnce, this);
@@ -33,7 +33,7 @@ export default class Main extends BaseController {
 		if(selected){
 			binding.filter(new Filter("found", "EQ", false));
 		} else {
-			binding.filter(new Filter("found", "EQ", true));
+			binding.filter();
 		}
 		
 	}
@@ -57,17 +57,73 @@ export default class Main extends BaseController {
 		window.history.pushState({}, "", newURL);
 		try {
 			const response = await jQuery.ajax({
-				url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,
-				// url: `http://localhost:3000/checkBadges?scnId=${scnId}`,
+				// url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,
+				url: `http://localhost:3000/checkBadges?scnId=${scnId}`,
 				method: "GET",
 			});
 			this.response = response;
+			const {
+				userLevel,
+				accumulatedPoints,
+				pointsToNextLevel
+			} = this.getProgress(response);	
+			oModel.setProperty("/text", `Your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`);
 			oModel.setProperty("/badges", response);
 		} catch (error) {
 			MessageToast.show("Error fetching badges");
 		}
 		this.getView().setBusy(false);
 	}
+
+	getProgress(data: any) {
+		const foundTotal = data.filter((badge: any) => badge.found);
+		const points = foundTotal.reduce((a: any, b: any) => a + b.points, 0); // accumulatedPoints
+	
+		const levels = [
+			{ "level": 1, "points": 3000 },
+			{ "level": 2, "points": 14000 },
+			{ "level": 3, "points": 22000 },
+			{ "level": 4, "points": 30000 }
+		];
+	
+		const {
+			userLevel,
+			accumulatedPoints,
+			pointsToNextLevel
+		} = this.calculateProgress(levels, points);
+	
+		console.log(userLevel, accumulatedPoints, pointsToNextLevel);
+		return {
+			userLevel,
+			accumulatedPoints,
+			pointsToNextLevel
+		};
+	}
+	
+	calculateProgress(data: any, accumulatedPoints: number) {
+		let userLevel = 0;
+		let pointsToNextLevel = 0;
+	
+		// Sort data by level in ascending order
+		data.sort((a: any, b: any) => a.level - b.level);
+	
+		for (const badge of data) {
+			if (accumulatedPoints < badge.points) {
+				pointsToNextLevel = badge.points - accumulatedPoints;
+				break;
+			} else {
+				userLevel = badge.level;
+			}
+		}
+	
+		return {
+			userLevel,
+			accumulatedPoints,
+			pointsToNextLevel
+		};
+	}
+	
+
 
 	beforeOpenColumnMenu(oEvt) {
 		var oMenu = this.byId("menu");
