@@ -1,166 +1,166 @@
-[
-  {
-    "day": "",
-    "badgeCode": "Devtoberfest 2023 badge no stars",
-    "contentWeekLink": "https://groups.community.sap.com/t5/devtoberfest/gh-p/Devtoberfest",
-    "week": 1
-  },
-  {
-    "day": "",
-    "badgeCode": "TechEd Badge",
-    "contentWeekLink": "https://www.sap.com/events/teched/bangalore.html?campaigncode=crm-ye23-ted-2084187_06&source=ppc-1na-google_ads-search-71700000114250900-58700008530173910-btp_btp-x-x-x&dfa=1&gad=1&gclid=CjwKCAjwu4WoBhBkEiwAojNdXvtG-m4j_UiLFKn7e2uqPeoWvW7MPYNNf5Ky03r0Ap6dSoNsB54HaRoC_c8QAvD_BwE&gclsrc=aw.ds",
-    "week": 1
-  },
-  {
-    "day": "Monday 18/09",
-    "badgeCode": "#CD9B1D",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-extensibility.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#D2691E",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-capire.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#B0171F",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-overview.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#9C661F",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-abapcloud.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#CAE1FF",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-multitenancysaasapp.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#DAA520",
-    "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#292421",
-    "contentWeekLink": "https://developers.sap.com/tutorials/btp-cap-beginner-bas-wizard.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#EE7621",
-    "contentWeekLink": "https://developers.sap.com/tutorials/btp-cap-beginner-golden-path.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#ED9121",
-    "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-restful-programming-model.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#FF00FF",
-    "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-generate-ui-service.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#9B30FF",
-    "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-enhance-data-model.html",
-    "week": 1
-  },
-  {
-    "day": "Monday",
-    "badgeCode": "#BF3EFF",
-    "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-early-numbering.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday 19/09",
-    "badgeCode": "#228B22",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-sap-build.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#698B22",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-app-development.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#EEB422",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-ui-theming.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#6B8E23",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-s4hana-extensibility.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#FF7F24",
-    "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-1-custom-component.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#FFC125",
-    "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-2-backend.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#8B5A2B",
-    "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-3-product-list.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#A0522D",
-    "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-4-details-page.html",
-    "week": 1
-  },
-  {
-    "day": "Tuesday",
-    "badgeCode": "#F5FFFA",
-    "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-5-details-page.html",
-    "week": 1
-  },
-  {
-    "day": "Wednesday 20/09",
-    "badgeCode": "#556B2F",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-eda-with-sap-and-microsoft.html",
-    "week": 1
-  },
-  {
-    "day": "Wednesday",
-    "badgeCode": "#ADFF2F",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-sap-graph.html",
-    "week": 1
-  },
-  {
-    "day": "Wednesday",
-    "badgeCode": "#32CD32",
-    "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-sap-api-management.html",
-    "week": 1
-  },
-  {
-    "day": "Wednesday",
-    "badgeCode": "#9ACD32",
-    "contentWeekLink": "https://developers.sap.com/tutorials/api-mgmt-isuite-initial-setup.html",
-    "week": 1
-  },
+  [
+    {
+      "day": "",
+      "badgeCode": "Devtoberfest 2023 badge no stars",
+      "contentWeekLink": "https://groups.community.sap.com/t5/devtoberfest/gh-p/Devtoberfest",
+      "week": 1
+    },
+    {
+      "day": "",
+      "badgeCode": "TechEd Badge",
+      "contentWeekLink": "https://www.sap.com/events/teched/bangalore.html?campaigncode=crm-ye23-ted-2084187_06&source=ppc-1na-google_ads-search-71700000114250900-58700008530173910-btp_btp-x-x-x&dfa=1&gad=1&gclid=CjwKCAjwu4WoBhBkEiwAojNdXvtG-m4j_UiLFKn7e2uqPeoWvW7MPYNNf5Ky03r0Ap6dSoNsB54HaRoC_c8QAvD_BwE&gclsrc=aw.ds",
+      "week": 1
+    },
+    {
+      "day": "Monday 18/09",
+      "badgeCode": "#CD9B1D",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-extensibility.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#D2691E",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-capire.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#B0171F",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-overview.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#9C661F",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-abapcloud.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#CAE1FF",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-abap-cap-multitenancysaasapp.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#DAA520",
+      "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#292421",
+      "contentWeekLink": "https://developers.sap.com/tutorials/btp-cap-beginner-bas-wizard.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#EE7621",
+      "contentWeekLink": "https://developers.sap.com/tutorials/btp-cap-beginner-golden-path.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#ED9121",
+      "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-restful-programming-model.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#FF00FF",
+      "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-generate-ui-service.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#9B30FF",
+      "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-enhance-data-model.html",
+      "week": 1
+    },
+    {
+      "day": "Monday",
+      "badgeCode": "#BF3EFF",
+      "contentWeekLink": "https://developers.sap.com/tutorials/abap-environment-rap100-early-numbering.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday 19/09",
+      "badgeCode": "#228B22",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-sap-build.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#698B22",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-app-development.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#EEB422",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-ui-theming.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#6B8E23",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-lcnc-s4hana-extensibility.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#FF7F24",
+      "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-1-custom-component.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#FFC125",
+      "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-2-backend.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#8B5A2B",
+      "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-3-product-list.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#A0522D",
+      "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-4-details-page.html",
+      "week": 1
+    },
+    {
+      "day": "Tuesday",
+      "badgeCode": "#F5FFFA",
+      "contentWeekLink": "https://developers.sap.com/tutorials/build-apps-socialmedia-5-details-page.html",
+      "week": 1
+    },
+    {
+      "day": "Wednesday 20/09",
+      "badgeCode": "#556B2F",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-eda-with-sap-and-microsoft.html",
+      "week": 1
+    },
+    {
+      "day": "Wednesday",
+      "badgeCode": "#ADFF2F",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-sap-graph.html",
+      "week": 1
+    },
+    {
+      "day": "Wednesday",
+      "badgeCode": "#32CD32",
+      "contentWeekLink": "https://developers.sap.com/tutorials/devtoberfest2023-week1-integration-sap-api-management.html",
+      "week": 1
+    },
+    {
+      "day": "Wednesday",
+      "badgeCode": "#9ACD32",
+      "contentWeekLink": "https://developers.sap.com/tutorials/api-mgmt-isuite-initial-setup.html",
+      "week": 1
+    },
   {
     "day": "Wednesday",
     "badgeCode": "#B3EE3A",

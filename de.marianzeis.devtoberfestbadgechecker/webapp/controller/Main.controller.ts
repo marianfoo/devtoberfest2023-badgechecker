@@ -159,7 +159,8 @@ export default class Main extends BaseController {
 		const binding = oTable.getBinding("items");
 		// default is sort by week and group true
 		const sorter = new Sorter("week", false, true);
-		binding.sort(sorter);
+		const sorter2 = new Sorter("date");
+		binding.sort([sorter, sorter2]);
 	}
 
 	_getKey(oControl) {
