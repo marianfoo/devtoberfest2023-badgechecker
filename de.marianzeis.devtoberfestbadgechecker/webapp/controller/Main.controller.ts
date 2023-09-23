@@ -1,5 +1,6 @@
 import BaseController from "./BaseController";
 import MessageToast from "sap/m/MessageToast";
+import Sorter from "sap/ui/model/Sorter";
 import JSONModel from "sap/ui/model/json/JSONModel";
 
 /**
@@ -61,5 +62,39 @@ export default class Main extends BaseController {
 			MessageToast.show("Error fetching badges");
 		}
 		this.getView().setBusy(false);
+	}
+
+	beforeOpenColumnMenu(oEvt) {
+		var oMenu = this.byId("menu");
+		var oColumn = oEvt.getParameter("openBy");
+		var oSortItem = oMenu.getQuickActions()[0].getItems()[0];
+
+		oSortItem.setKey(this._getKey(oColumn));
+		oSortItem.setLabel(oColumn.getHeader().getText());
+		oSortItem.setSortOrder(oColumn.getSortIndicator());
+	}
+
+	onSort(event: Event){
+		var oSortItem = event.getParameter("item");
+		var oTable = this.byId("table");
+		var sAffectedProperty = oSortItem.getKey();
+		var sSortOrder = oSortItem.getSortOrder();
+
+		// sort table binding 
+		const binding = oTable.getBinding("items");
+		const sorter = new Sorter(sAffectedProperty, sSortOrder === "Descending");
+		binding.sort(sorter);
+	}
+
+	onResetSort(event: Event){
+		const oTable = this.byId("table");
+		const binding = oTable.getBinding("items");
+		// default is sort by week and group true
+		const sorter = new Sorter("week", false, true);
+		binding.sort(sorter);
+	}
+
+	_getKey(oControl) {
+		return this.getView().getLocalId(oControl.getId());
 	}
 }

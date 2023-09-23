@@ -1,40 +1,66 @@
 <mvc:View controllerName="de.marianzeis.devtoberfestbadgechecker.controller.Main" displayBlock="true"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:plugins="sap.m.plugins"
+    xmlns:columnmenu="sap.m.table.columnmenu"
 	xmlns:core="sap.ui.core" core:require="{
 		formatter: 'de/marianzeis/devtoberfestbadgechecker/model/formatter'
 	}">
 	<Page showHeader="false">
-	<VBox class="sapUiSmallMargin">
-		<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" />
-		<HBox class="sapUiSmallMarginBottom">
-		<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
-		<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
-		</HBox>
-		<ScrollContainer height="100%" vertical="true" horizontal="false">
-			<Table id="table" items="{/badges}" class="sapUiResponsiveMargin">
-				<columns>
-					<Column>
-						<Text text="Badge Name" />
-					</Column>
-					<Column>
-						<Text text="URL" />
-					</Column>
-					<Column>
-						<Text text="Found" />
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<Text text="{displayName}" />
-							<Link text="{badgeURL}" href="{badgeURL}" target="_blank" />
-							<GenericTag text="{= ${found} ? 'Badge received' : 'Badge not received'}" design="StatusIconHidden" status="{= ${found} ? 'Success' : 'Error'}"  class="sapUiSmallMarginBottom"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</ScrollContainer>
-	</VBox>
+		<VBox class="sapUiSmallMargin">
+			<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" />
+			<HBox class="sapUiSmallMarginBottom">
+				<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
+				<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
+				<Button text="Reset Sort" press="onResetSort" />
+			</HBox>
+			<ScrollContainer height="100%" vertical="true" horizontal="false">
+				<Table id="table" items="{
+				path: '/badges',
+				sorter : {
+					path : 'week',
+					group : true
+				}}" 
+				class="sapUiResponsiveMargin">
+
+					<columns>
+						<Column id="displayName" headerMenu="menu">
+							<Text text="Badge Name" />
+						</Column>
+						<Column id="badgeURL" headerMenu="menu">
+							<Text text="URL" />
+						</Column >
+						<Column id="found" headerMenu="menu">
+							<Text text="Found" />
+						</Column>
+						<Column id="points" headerMenu="menu">
+							<Text text="Points" />
+						</Column>
+					</columns>
+
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{displayName}" />
+								<Link text="{badgeURL}" href="{badgeURL}" target="_blank" />
+								<GenericTag text="{= ${found} ? 'Badge received' : 'Badge not received'}" design="StatusIconHidden" status="{= ${found} ? 'Success' : 'Error'}" class="sapUiSmallMarginBottom"/>
+								<Text text="{points}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+
+					<dependents>
+						<plugins:ColumnResizer/>
+						<columnmenu:Menu id="menu"  beforeOpen="beforeOpenColumnMenu">
+							<columnmenu:QuickSort change="onSort">
+								<columnmenu:items>
+									<columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+								</columnmenu:items>
+							</columnmenu:QuickSort>
+						</columnmenu:Menu>
+					</dependents>
+				</Table>
+			</ScrollContainer>
+		</VBox>
 	</Page>
 </mvc:View>
