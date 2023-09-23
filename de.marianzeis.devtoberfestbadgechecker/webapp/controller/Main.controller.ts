@@ -57,8 +57,8 @@ export default class Main extends BaseController {
 		window.history.pushState({}, "", newURL);
 		try {
 			const response = await jQuery.ajax({
-				// url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,
-				url: `http://localhost:3000/checkBadges?scnId=${scnId}`,
+				url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,
+				// url: `http://localhost:3000/checkBadges?scnId=${scnId}`,
 				method: "GET",
 			});
 			this.response = response;
