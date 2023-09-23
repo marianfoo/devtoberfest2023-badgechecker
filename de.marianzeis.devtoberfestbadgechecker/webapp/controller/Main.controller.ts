@@ -75,6 +75,13 @@ export default class Main extends BaseController {
 		this.getView().setBusy(false);
 	}
 
+	onGoToGameboard(){
+		// open the link https://devrel-tools-prod-scn-badges-srv.cfapps.eu10.hana.ondemand.com/devtoberfestContest/mariannnn in a new tab
+		const scnId = this.getView().getModel().getProperty("/scnId");
+		window.open(`https://devrel-tools-prod-scn-badges-srv.cfapps.eu10.hana.ondemand.com/devtoberfestContest/${scnId}`, "_blank");
+
+	}
+
 	getProgress(data: any) {
 		const foundTotal = data.filter((badge: any) => badge.found);
 		const points = foundTotal.reduce((a: any, b: any) => a + b.points, 0); // accumulatedPoints

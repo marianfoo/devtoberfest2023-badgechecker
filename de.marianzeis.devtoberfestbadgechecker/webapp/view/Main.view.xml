@@ -30,6 +30,7 @@
 					</HBox>
 					<HBox class="sapUiSmallMarginBottom">
 						<Button text="Reset Sorting" press="onResetSort" />
+						<Button text="Go To Gameboard" class="sapUiSmallMarginBegin" press="onGoToGameboard" enabled="{= ${/scnId} !== ''}" />
 					</HBox>
 					<HBox class="sapUiNoMarginBottom">
 						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" />
