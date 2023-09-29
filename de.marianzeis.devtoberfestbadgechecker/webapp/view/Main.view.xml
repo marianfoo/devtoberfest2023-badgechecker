@@ -64,13 +64,16 @@
 						<Column id="day" width="17%" visible="{= ${device>/system/desktop} }" >
 							<Text text="Day" />
 						</Column>
+						<Column id="type" width="17%" headerMenu="menu" visible="{= ${device>/system/desktop} }" >
+							<Text text="Type" />
+						</Column>
 					</columns>
 
 					<items>
 						<ColumnListItem>
 							<cells>
 								<Text text="{displayName}" />
-								<Link text="Link" href="{badgeURL}" target="_blank" />
+								<Link text="Link" href="{badgeURL}" target="_blank" visible="{= ${badgeURL} === '' ? false : true}" />
 								<ObjectStatus class="sapUiSmallMarginBottom" text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>
 								<Text text="{points}" />
 								<Text text="{
@@ -83,6 +86,7 @@
 										}
 									}
 								}" />
+								<Text text="{type}" />
 							</cells>
 						</ColumnListItem>
 					</items>
