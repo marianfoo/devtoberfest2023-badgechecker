@@ -23,12 +23,14 @@ app.get('/checkBadges', async (req, res) => {
         'https://raw.githubusercontent.com/SAP-samples/sap-community-activity-badges/main/srv/util/badges.json'
       ),
       axios.get(
-        `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
+        // `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
+        `https://devrel-tools-prod-scn-badges-srv.cfapps.eu10.hana.ondemand.com/devtoberfest/profile/${scnId}`
       ),
     ]);
 
     const allBadges = allBadgesResponse.data;
-    const userBadges = userBadgesResponse.data.content;
+    const userBadges = userBadgesResponse.data.badges.content;
+    results
 
     allBadges.forEach((badge) => {
       const userBadge = userBadges.find(
@@ -60,7 +62,7 @@ app.get('/checkBadges', async (req, res) => {
       });
     });
 
-    res.json(results);
+    res.json({results:results,level:userBadgesResponse.data.level, points:userBadgesResponse.data.points, userName:userBadgesResponse.data.userName});
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'Internal error occurred.' });

@@ -62,13 +62,29 @@ export default class Main extends BaseController {
 				method: "GET",
 			});
 			this.response = response;
-			const {
-				userLevel,
-				accumulatedPoints,
-				pointsToNextLevel
-			} = this.getProgress(response);	
-			oModel.setProperty("/text", `Your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`);
-			oModel.setProperty("/badges", response);
+			const levels = {
+				1: 3000,
+				2: 14000,
+				3: 22000,
+				4: 30000
+			};
+			const userLevel = response.level as number;
+			const accumulatedPoints = response.points as number;
+			const pointsToNextLevel = Math.abs(
+				accumulatedPoints - levels[userLevel + 1]
+			);
+			if (userLevel === 4) {
+				oModel.setProperty(
+					"/text",
+					`You have reached the highest level with ${accumulatedPoints} points.`
+				);
+			} else {
+				oModel.setProperty(
+					"/text",
+					`Your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`
+				);
+			}
+			oModel.setProperty("/badges", response.results);
 		} catch (error) {
 			MessageToast.show("Error fetching badges");
 		}
@@ -81,56 +97,6 @@ export default class Main extends BaseController {
 		window.open(`https://devrel-tools-prod-scn-badges-srv.cfapps.eu10.hana.ondemand.com/devtoberfestContest/${scnId}`, "_blank");
 
 	}
-
-	getProgress(data: any) {
-		const foundTotal = data.filter((badge: any) => badge.found);
-		const points = foundTotal.reduce((a: any, b: any) => a + b.points, 0); // accumulatedPoints
-	
-		const levels = [
-			{ "level": 1, "points": 3000 },
-			{ "level": 2, "points": 14000 },
-			{ "level": 3, "points": 22000 },
-			{ "level": 4, "points": 30000 }
-		];
-	
-		const {
-			userLevel,
-			accumulatedPoints,
-			pointsToNextLevel
-		} = this.calculateProgress(levels, points);
-	
-		console.log(userLevel, accumulatedPoints, pointsToNextLevel);
-		return {
-			userLevel,
-			accumulatedPoints,
-			pointsToNextLevel
-		};
-	}
-	
-	calculateProgress(data: any, accumulatedPoints: number) {
-		let userLevel = 0;
-		let pointsToNextLevel = 0;
-	
-		// Sort data by level in ascending order
-		data.sort((a: any, b: any) => a.level - b.level);
-	
-		for (const badge of data) {
-			if (accumulatedPoints < badge.points) {
-				pointsToNextLevel = badge.points - accumulatedPoints;
-				break;
-			} else {
-				userLevel = badge.level;
-			}
-		}
-	
-		return {
-			userLevel,
-			accumulatedPoints,
-			pointsToNextLevel
-		};
-	}
-	
-
 
 	beforeOpenColumnMenu(oEvt) {
 		var oMenu = this.byId("menu");
