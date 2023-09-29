@@ -40,6 +40,7 @@
 			<ScrollContainer height="100%" vertical="true" horizontal="false" class="sapUiNoMarginBegin sapUiTinyMarginEnd">
 				<Table id="table" items="{
 				path: '/badges',
+				length: 1000,
 				sorter : [{
 					path : 'week',
 					group : true
