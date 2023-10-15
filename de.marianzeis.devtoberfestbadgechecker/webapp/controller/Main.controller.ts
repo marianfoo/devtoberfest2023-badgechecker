@@ -12,7 +12,7 @@ export default class Main extends BaseController {
 	
 	onInit () {
 		// Set initial model
-		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "" }));
+		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "", currentDate: new Date().toISOString() }));
 		this.getRouter()
 			.getRoute("main")
 			.attachEventOnce("patternMatched", this.onPatternMatchedOnce, this);
