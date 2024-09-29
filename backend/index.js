@@ -38,24 +38,29 @@ app.get('/checkBadges', async (req, res) => {
 
   try {
     const results = [];
-    const [allBadgesResponse, userBadgesResponse] = await Promise.all([
+    const [allBadgesResponse, userBadgesResponse, userProfileResponse] = await Promise.all([
       axios.get(
         'https://raw.githubusercontent.com/SAP-samples/sap-community-activity-badges/main/srv/util/badges.json'
       ),
       axios.get(
         // `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
+        `https://community.sap.com/khhcw49343/api/2.0/users/${scnId}`
+      ),
+      axios.get(
+        // `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
+        // `https://community.sap.com/khhcw49343/api/2.0/users/${scnId}`,
         `https://devrel-tools-prod-scn-badges-srv.cfapps.eu10.hana.ondemand.com/devtoberfest/profile/${scnId}`
       ),
     ]);
 
     const allBadges = allBadgesResponse.data;
-    const userBadges = userBadgesResponse.data.badges.content;
+    const userBadges = userBadgesResponse.data.data.user_badges.items;
     results;
 
     for (let i = 0; i < allBadges.length; i++) {
       const badge = allBadges[i];
       const userBadge = userBadges.find(
-        (ub) => ub.displayName === badge.displayName
+        (ub) => ub.badge.title === badge.displayName
       );
 
       // Directly get the week and date from the badge.json data
@@ -72,7 +77,7 @@ app.get('/checkBadges', async (req, res) => {
         type = 'Tutorial';
       }
 
-      let endDate = getPacificMidnight(2023, 10, 16);
+      let endDate = getPacificMidnight(2024, 10, 25);
 
       let found;
       let points;
@@ -97,9 +102,9 @@ app.get('/checkBadges', async (req, res) => {
 
     res.json({
       results: results,
-      level: userBadgesResponse.data.level,
-      points: userBadgesResponse.data.points,
-      userName: userBadgesResponse.data.userName,
+      level: userProfileResponse.data.level,
+      points: userProfileResponse.data.points,
+      userName: userProfileResponse.data.userName,
     });
   } catch (error) {
     console.error('Error:', error.message);
