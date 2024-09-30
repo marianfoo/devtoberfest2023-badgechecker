@@ -36,7 +36,7 @@
 						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" />
 					</HBox>
 					<HBox class="sapUiNoMarginBottom">
-						<Text id="cutoffdate" text="Cut off Date reached. Every Badge received after 25 October 2024 midnight US Pacific time, does not count." visible="{= ${/currentDate} >= '204-10-25T00:00:00Z' }" />
+						<Text id="cutoffdate" text="Cut off Date reached. Every Badge received after 27 October 2024 midnight US Pacific time, does not count." visible="{= ${/currentDate} >= '204-10-27:00:00Z' }" />
 					</HBox>
 				</VBox>
 			</VBox>
