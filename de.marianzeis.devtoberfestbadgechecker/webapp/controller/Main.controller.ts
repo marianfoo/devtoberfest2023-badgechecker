@@ -98,6 +98,10 @@ export default class Main extends BaseController {
 
 	}
 
+	goToRepo(){
+		window.open("https://github.com/marianfoo/devtoberfest2023-badgechecker", "_blank");
+	}
+
 	beforeOpenColumnMenu(oEvt) {
 		var oMenu = this.byId("menu");
 		var oColumn = oEvt.getParameter("openBy");

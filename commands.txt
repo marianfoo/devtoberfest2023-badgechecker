@@ -4,3 +4,6 @@ sudo nano /etc/caddy/Caddyfile
  sudo kill -9 $(sudo lsof -t -i:3000)
 
  nohup node index.js > output.log 2>&1 &
+
+sudo rm -rf /var/www/devtoberfest/*
+sudo cp -r /root/devtoberfest2023-badgechecker/de.marianzeis.devtoberfestbadgechecker/dist/* /var/www/devtoberfest/
