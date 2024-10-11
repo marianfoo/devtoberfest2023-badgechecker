@@ -56,20 +56,17 @@ export default class Main extends BaseController {
 		}?${mParams.toString()}`;
 		window.history.pushState({}, "", newURL);
 		try {
-			const response = await jQuery.ajax({
-				url: `https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`,
-				// url: `http://localhost:3000/checkBadges?scnId=${scnId}`,
-				method: "GET",
-			});
-			this.response = response;
+			const response = await fetch(`https://devtoberfest.marianzeis.de/api/checkBadges?scnId=${scnId}`);
+			const result = await response.json();
+			this.response = result;
 			const levels = {
 				1: 3000,
 				2: 14000,
 				3: 22000,
 				4: 30000
 			};
-			const userLevel = response.level as number;
-			const accumulatedPoints = response.points as number;
+			const userLevel = result.level as number;
+			const accumulatedPoints = result.points as number;
 			const pointsToNextLevel = Math.abs(
 				accumulatedPoints - levels[userLevel + 1]
 			);
@@ -84,9 +81,10 @@ export default class Main extends BaseController {
 					`Your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`
 				);
 			}
-			oModel.setProperty("/badges", response.results);
+			oModel.setProperty("/badges", result.results);
 		} catch (error) {
 			MessageToast.show("Error fetching badges");
+			console.error(error);
 		}
 		this.getView().setBusy(false);
 	}
