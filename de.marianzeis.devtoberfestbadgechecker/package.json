@@ -7,8 +7,11 @@
 	"scripts": {
 		"clean": "rimraf dist coverage",
 		"build": "ui5 build --clean-dest",
+		"build:2": "ui5 build --config ui5-openui5-2.yaml --clean-dest",
 		"build:opt": "ui5 build self-contained --clean-dest --all",
+		"build:opt:2": "ui5 build self-contained --config ui5-openui5-2.yaml --clean-dest --all",
 		"start": "ui5 serve --port 8080 -o index.html",
+		"start:2": "ui5 serve --config ui5-openui5-2.yaml --port 8080 -o index.html",
 		"start-cdn": "ui5 serve --port 8080 -o index-cdn.html",
 		"start:dist": "npm start -- --config ui5-dist.yaml",
 		"start:dist-cdn": "npm run start-cdn -- --config ui5-dist.yaml",
@@ -36,6 +39,6 @@
 		"ui5-tooling-transpile": "^3.5.0"
 	},
 	"dependencies": {
-    "node-fetch": "3.3.2"
+		"node-fetch": "3.3.2"
 	}
 }
