@@ -77,7 +77,7 @@ app.get('/checkBadges', async (req, res) => {
         type = 'Tutorial';
       }
 
-      let endDate = getPacificMidnight(2024, 10, 27);
+      let endDate = getPacificMidnight(2025, 10, 27);
 
       let found;
       let points;
@@ -112,7 +112,7 @@ app.get('/checkBadges', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3013;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
