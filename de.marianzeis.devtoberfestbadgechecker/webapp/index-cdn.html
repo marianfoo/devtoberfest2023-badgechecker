@@ -7,22 +7,40 @@
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Devtoberfest Badge Checker</title>
+	<title>Devtoberfest Badge Checker</title>
 
-		<script
-			id="sap-ui-bootstrap"
-			src="https://sdk.openui5.org/1.140.0/resources/sap-ui-core.js"
-			data-sap-ui-resourceroots='{
-				"de.marianzeis.devtoberfestbadgechecker": "./"
-			}'
-			data-sap-ui-theme="sap_horizon"
-			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-			data-sap-ui-async="true"
-			data-sap-ui-compatVersion="edge"
-			data-sap-ui-frameOptions="trusted"
-			data-sap-ui-xx-waitForTheme="true"
-			data-sap-ui-xx-supportedLanguages="en,de"
-		></script>
+	<script>
+		window["sap-ui-config"] = {};
+		// Set initial theme based on localStorage (user preference) or system preference
+		window["sap-ui-config"]["theme"] = (function () {
+			try {
+				// Check localStorage first (user preference from manual toggle)
+				const userTheme = localStorage.getItem("userPreferredTheme");
+				if (userTheme) {
+					return userTheme;
+				}
+				// Fall back to system preference
+				return window.matchMedia("(prefers-color-scheme: dark)").matches ? "sap_horizon_dark" : "sap_horizon";
+			} catch (ex) {
+				console.warn("Theme detection failed - using default theme");
+				return "sap_horizon";
+			}
+		})();
+	</script>
+
+	<script
+		id="sap-ui-bootstrap"
+		src="https://sdk.openui5.org/1.140.0/resources/sap-ui-core.js"
+		data-sap-ui-resourceroots='{
+			"de.marianzeis.devtoberfestbadgechecker": "./"
+		}'
+		data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+		data-sap-ui-async="true"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-frameOptions="trusted"
+		data-sap-ui-xx-waitForTheme="true"
+		data-sap-ui-xx-supportedLanguages="en,de"
+	></script>
 	</head>
 
 	<body class="sapUiBody">

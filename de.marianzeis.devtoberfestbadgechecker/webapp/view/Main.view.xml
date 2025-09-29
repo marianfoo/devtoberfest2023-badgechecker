@@ -7,38 +7,40 @@
 	xmlns:core="sap.ui.core" core:require="{
 		formatter: 'de/marianzeis/devtoberfestbadgechecker/model/formatter'
 	}">
-	<Page showHeader="false">
+	<Page title="Devtoberfest 2025 Badge Checker" showHeader="true">
 		<l:Grid defaultSpan="L12 M12 S12" hSpacing="0" class="sapUiSmallMarginBegin">
 			<VBox id="responsiveBox" width="{= ${device>/system/desktop} ? '60%' : '100%' }" justifyContent="Center" class="sapUiSmallMarginBegin sapUiNoMarginBottom" alignItems="Start">
-				<VBox class="sapUiSmallMarginTop" justifyContent="Center" width="{= ${device>/system/desktop} ? '60%' : '100%' }" alignItems="Start">
-					<HBox class="sapUiNoMarginBottom" justifyContent="Center" alignItems="Baseline" width="100%">
-						<Label text="SAP Community ID" class="sapUiSmallMarginEnd">
+				<VBox class="sapUiSmallMarginTop" justifyContent="Center" width="100%" alignItems="Start">
+					<!-- Input field with label in one line -->
+					<FlexBox alignItems="Center" wrap="NoWrap" width="100%" class="sapUiMediumMarginBottom">
+						<Label text="SAP Community ID" class="sapUiSmallMarginEnd" />
+						<Input id="input" value="{/scnId}" placeholder="Enter scnId" width="90%" valueState="None" submit="onGetBadgesPress">
 							<layoutData>
-								<FlexItemData baseSize='30%'/>
-							</layoutData>
-						</Label>
-						<Input id="input" value="{/scnId}" placeholder="Enter scnId" class="sapUiMediumMarginBottom" valueState="None" submit="onGetBadgesPress">
-							<layoutData>
-								<FlexItemData baseSize='70%'/>
+								<FlexItemData growFactor="1" />
 							</layoutData>
 						</Input>
-					</HBox>
-					<HBox class="sapUiSmallMarginBottom">
-						<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" />
-						<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" />
+					</FlexBox>
 
-					</HBox>
-					<HBox class="sapUiSmallMarginBottom">
-						<Button text="Reset Sorting" press="onResetSort" />
-						<Button text="Go To Gameboard" class="sapUiSmallMarginBegin" press="onGoToGameboard" enabled="{= ${/scnId} !== ''}" />
-						<Button text="Go To GitHub Repo" class="sapUiSmallMarginBegin" press="goToRepo"/>
-					</HBox>
-					<HBox class="sapUiNoMarginBottom">
-						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" />
-					</HBox>
-					<HBox class="sapUiNoMarginBottom">
+					<!-- Button area with wrapping enabled for mobile -->
+					<FlexBox wrap="Wrap" alignItems="Start" class="sapUiSmallMarginBottom">
+						<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+						<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" class="sapUiTinyMarginBottom" />
+					</FlexBox>
+
+					<!-- Secondary buttons with wrapping -->
+					<FlexBox wrap="Wrap" alignItems="Start" class="sapUiSmallMarginBottom">
+						<Button text="Reset Sorting" press="onResetSort" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+						<Button text="Go To Gameboard" press="onGoToGameboard" enabled="{= ${/scnId} !== ''}" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+						<Button text="Go To Community" press="goToCommunity" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+						<Button text="Go To GitHub Repo" press="goToRepo" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+						<Button id="themeToggle" text="Toggle Theme" icon="sap-icon://palette" press="onToggleTheme" type="Transparent" tooltip="Toggle Dark/Light Mode" class="sapUiTinyMarginBottom" />
+					</FlexBox>
+
+					<!-- Status messages -->
+					<VBox class="sapUiNoMarginBottom" width="100%">
+						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" class="sapUiSmallMarginBottom" />
 						<Text id="cutoffdate" text="Cut off Date reached. Every Badge received after 27 October 2024 midnight US Pacific time, does not count." visible="{= ${/currentDate} >= '204-10-27:00:00Z' }" />
-					</HBox>
+					</VBox>
 				</VBox>
 			</VBox>
 			<ScrollContainer height="100%" vertical="true" horizontal="false" class="sapUiNoMarginBegin sapUiTinyMarginEnd">

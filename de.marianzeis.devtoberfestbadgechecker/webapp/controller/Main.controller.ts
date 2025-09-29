@@ -3,6 +3,7 @@ import MessageToast from "sap/m/MessageToast";
 import Filter from "sap/ui/model/Filter";
 import Sorter from "sap/ui/model/Sorter";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import Theming from "sap/ui/core/Theming";
 
 /**
  * @namespace de.marianzeis.devtoberfestbadgechecker.controller
@@ -99,6 +100,28 @@ export default class Main extends BaseController {
 
 	goToRepo(){
 		window.open("https://github.com/marianfoo/devtoberfest2023-badgechecker", "_blank");
+	}
+
+	goToCommunity(){
+		window.open("https://community.sap.com/t5/devtoberfest/gh-p/Devtoberfest", "_blank");
+	}
+
+	onToggleTheme() {
+		// Get current theme
+		const currentTheme = Theming.getTheme();
+
+		// Toggle between light and dark theme
+		const newTheme = currentTheme === "sap_horizon_dark" ? "sap_horizon" : "sap_horizon_dark";
+
+		// Apply new theme
+		Theming.setTheme(newTheme);
+
+		// Store user preference in localStorage
+		localStorage.setItem("userPreferredTheme", newTheme);
+
+		// Show feedback to user
+		const themeMode = newTheme === "sap_horizon_dark" ? "Dark" : "Light";
+		MessageToast.show(`Switched to ${themeMode} Mode`);
 	}
 
 	beforeOpenColumnMenu(oEvt) {
