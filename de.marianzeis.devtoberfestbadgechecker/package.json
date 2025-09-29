@@ -7,11 +7,14 @@
 	"scripts": {
 		"clean": "rimraf dist coverage",
 		"build": "ui5 build --clean-dest",
-		"build:opt": "ui5 build self-contained --clean-dest --all",
+		"build:opt": "ui5 build self-contained --clean-dest --all --include-task=generateCachebusterInfo",
 		"start": "ui5 serve --port 8080 -o index.html",
 		"start-cdn": "ui5 serve --port 8080 -o index-cdn.html",
 		"start:dist": "npm start -- --config ui5-dist.yaml",
 		"start:dist-cdn": "npm run start-cdn -- --config ui5-dist.yaml",
+		"deploy": "npm run build:opt && npm run deploy:clean && npm run deploy:copy",
+		"deploy:clean": "sudo rm -rf /var/www/devtoberfest/*",
+		"deploy:copy": "sudo cp -r ./dist/* /var/www/devtoberfest/",
 		"ts-typecheck": "tsc --noEmit",
 		"lint": "eslint webapp",
 		"karma": "karma start",
@@ -20,7 +23,7 @@
 		"test": "npm run lint && npm run karma-ci-cov"
 	},
 	"devDependencies": {
-		"@openui5/types": "1.136.5",
+		"@openui5/types": "1.140.0",
 		"@typescript-eslint/eslint-plugin": "^8.8.1",
 		"@typescript-eslint/parser": "^8.8.1",
 		"@ui5/cli": "^4.0.8",
