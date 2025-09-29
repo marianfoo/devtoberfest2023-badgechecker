@@ -77,7 +77,7 @@ app.get('/checkBadges', async (req, res) => {
         type = 'Tutorial';
       }
 
-      let endDate = getPacificMidnight(2025, 10, 27);
+      let endDate = getPacificMidnight(2025, 10, 25);
 
       let found;
       let points;

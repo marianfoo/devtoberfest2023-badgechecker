@@ -9,7 +9,7 @@ import JSONModel from "sap/ui/model/json/JSONModel";
  */
 export default class Main extends BaseController {
 	response: any;
-	
+
 	onInit () {
 		// Set initial model
 		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "", currentDate: new Date().toISOString() }));
@@ -26,7 +26,7 @@ export default class Main extends BaseController {
 	}
 
 	onFilterBadges(oEvent: Event) {
-		
+
 		const table = this.byId("table");
 		const binding = table.getBinding("items");
 		const selected = oEvent.getParameter("selected")
@@ -35,7 +35,7 @@ export default class Main extends BaseController {
 		} else {
 			binding.filter();
 		}
-		
+
 	}
 
 	async onGetBadgesPress(event:any, scnIdPara?: string) {
@@ -66,6 +66,7 @@ export default class Main extends BaseController {
 				4: 30000
 			};
 			const userLevel = result.level as number;
+			const userName = result.userName as string;
 			const accumulatedPoints = result.points as number;
 			const pointsToNextLevel = Math.abs(
 				accumulatedPoints - levels[userLevel + 1]
@@ -78,7 +79,7 @@ export default class Main extends BaseController {
 			} else {
 				oModel.setProperty(
 					"/text",
-					`Your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`
+					`Hello ${userName}, your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`
 				);
 			}
 			oModel.setProperty("/badges", result.results);
@@ -116,7 +117,7 @@ export default class Main extends BaseController {
 		var sAffectedProperty = oSortItem.getKey();
 		var sSortOrder = oSortItem.getSortOrder();
 
-		// sort table binding 
+		// sort table binding
 		const binding = oTable.getBinding("items");
 		const sorter = new Sorter(sAffectedProperty, sSortOrder === "Descending");
 		binding.sort(sorter);

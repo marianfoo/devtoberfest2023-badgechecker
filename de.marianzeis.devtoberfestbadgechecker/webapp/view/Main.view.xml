@@ -54,12 +54,9 @@
 				}]}" class="sapUiResponsiveMargin">
 
 					<columns>
-						<Column id="displayName" headerMenu="menu" width="40%">
+						<Column id="displayName" headerMenu="menu" width="53%">
 							<Text text="Badge Name" />
 						</Column>
-						<Column id="badgeURL" headerMenu="menu" width="13%">
-							<Text text="URL" />
-						</Column >
 						<Column id="found" headerMenu="menu" width="30%">
 							<Text text="Badge" />
 						</Column>
@@ -77,9 +74,13 @@
 					<items>
 						<ColumnListItem>
 							<cells>
-								<Text text="{displayName}" />
-								<Link text="Link" href="{badgeURL}" target="_blank" visible="{= ${badgeURL} === '' ? false : true}" />
-								<ObjectStatus class="sapUiSmallMarginBottom" text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>
+								<VBox>
+									<Link text="{displayName}" href="{badgeURL}" target="_blank" visible="{= ${badgeURL} !== '' }" />
+									<Text text="{displayName}" visible="{= ${badgeURL} === '' }" />
+								</VBox>
+								<FlexBox direction="Column" justifyContent="Center" alignItems="Start" height="100%" class="sapUiContentPadding">
+									<ObjectStatus text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>
+								</FlexBox>
 								<Text text="{points}" />
 								<Text text="{
 									path: 'date',
