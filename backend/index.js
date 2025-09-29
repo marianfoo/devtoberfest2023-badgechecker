@@ -38,13 +38,10 @@ app.get('/checkBadges', async (req, res) => {
 
   try {
     const results = [];
-    const [allBadgesResponse, userBadgesResponse, userProfileResponse] = await Promise.all([
+    // Removed userBadgesResponse as it is not used anymore
+    const [allBadgesResponse, userProfileResponse] = await Promise.all([
       axios.get(
         'https://raw.githubusercontent.com/SAP-samples/sap-community-activity-badges/main/srv/util/badges.json'
-      ),
-      axios.get(
-        // `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
-        `https://community.sap.com/khhcw49343/api/2.0/users/${scnId}`
       ),
       axios.get(
         // `https://people-api.services.sap.com/rs/badge/${scnId}?sort=timestamp,desc&size=1000`
@@ -54,7 +51,7 @@ app.get('/checkBadges', async (req, res) => {
     ]);
 
     const allBadges = allBadgesResponse.data;
-    const userBadges = userBadgesResponse.data.data.user_badges.items;
+    const userBadges = userProfileResponse.data.badges.data.user_badges.items;
     results;
 
     for (let i = 0; i < allBadges.length; i++) {
