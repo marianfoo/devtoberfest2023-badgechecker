@@ -14,7 +14,7 @@
 					<!-- Input field with label in one line -->
 					<FlexBox alignItems="Center" wrap="NoWrap" width="100%" class="sapUiMediumMarginBottom">
 						<Label text="SAP Community ID" class="sapUiSmallMarginEnd" />
-						<Input id="input" value="{/scnId}" placeholder="Enter scnId" width="90%" valueState="None" submit="onGetBadgesPress">
+						<Input id="input" value="{/scnId}" placeholder="Enter scnId or scnUsername" width="90%" valueState="None" submit="onGetBadgesPress">
 							<layoutData>
 								<FlexItemData growFactor="1" />
 							</layoutData>
@@ -37,7 +37,7 @@
 					</FlexBox>
 
 					<!-- Status messages -->
-					<VBox class="sapUiNoMarginBottom" width="100%">
+					<VBox class="sapUiNoMarginBottom" width="90%">
 						<Text id="status" text="{/text}" visible="{= ${/text} !== '' }" class="sapUiSmallMarginBottom" />
 						<Text id="cutoffdate" text="Cut off Date reached. Every Badge received after 27 October 2024 midnight US Pacific time, does not count." visible="{= ${/currentDate} >= '204-10-27:00:00Z' }" />
 					</VBox>
@@ -77,8 +77,20 @@
 						<ColumnListItem>
 							<cells>
 								<VBox>
-									<Link text="{displayName}" href="{badgeURL}" target="_blank" visible="{= ${badgeURL} !== '' }" />
-									<Text text="{displayName}" visible="{= ${badgeURL} === '' }" />
+									<Link text="{
+										parts: [
+											{path: 'displayName'},
+											{path: 'device>/system/desktop'}
+										],
+										formatter: 'formatter.formatBadgeNameForMobile'
+									}" href="{badgeURL}" target="_blank" visible="{= ${badgeURL} !== '' }" />
+									<Text text="{
+										parts: [
+											{path: 'displayName'},
+											{path: 'device>/system/desktop'}
+										],
+										formatter: 'formatter.formatBadgeNameForMobile'
+									}" visible="{= ${badgeURL} === '' }" />
 								</VBox>
 								<FlexBox direction="Column" justifyContent="Center" alignItems="Start" height="100%" class="sapUiContentPadding">
 									<ObjectStatus text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>

@@ -80,7 +80,7 @@ export default class Main extends BaseController {
 			} else {
 				oModel.setProperty(
 					"/text",
-					`Hello ${userName}, your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} points to reach the next level.`
+					`Hello ${userName}, your current level is ${userLevel} with ${accumulatedPoints} points. You need ${pointsToNextLevel} more points to advance to the next level.`
 				);
 			}
 			oModel.setProperty("/badges", result.results);
