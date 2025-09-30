@@ -25,7 +25,7 @@
 					<!-- Button area with wrapping enabled for mobile -->
 					<FlexBox wrap="Wrap" alignItems="Start" class="sapUiSmallMarginBottom">
 						<Button text="Get Badges" press="onGetBadgesPress" type="Emphasized" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
-						<CheckBox text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" class="sapUiTinyMarginBottom" />
+						<CheckBox id="filterCheckbox" text="Filter Badges not yet received" selected="false" select="onFilterBadges" enabled="{= ${/badges}.length > 0 ? true : false }" class="sapUiTinyMarginBottom" />
 					</FlexBox>
 
 					<!-- Secondary buttons with wrapping -->

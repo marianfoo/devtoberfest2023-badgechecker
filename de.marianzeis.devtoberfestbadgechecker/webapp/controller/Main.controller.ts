@@ -17,6 +17,15 @@ export default class Main extends BaseController {
 		this.getRouter()
 			.getRoute("main")
 			.attachEventOnce("patternMatched", this.onPatternMatchedOnce, this);
+
+		// Restore filter state from localStorage
+		const savedFilterState = localStorage.getItem("badgeFilterNotReceived");
+		if (savedFilterState === "true") {
+			const filterCheckbox = this.byId("filterCheckbox");
+			if (filterCheckbox) {
+				filterCheckbox.setSelected(true);
+			}
+		}
 	}
 
 	onPatternMatchedOnce() {
@@ -31,6 +40,10 @@ export default class Main extends BaseController {
 		const table = this.byId("table");
 		const binding = table.getBinding("items");
 		const selected = oEvent.getParameter("selected")
+
+		// Save filter state to localStorage
+		localStorage.setItem("badgeFilterNotReceived", selected ? "true" : "false");
+
 		if(selected){
 			binding.filter(new Filter("found", "EQ", false));
 		} else {
@@ -85,6 +98,20 @@ export default class Main extends BaseController {
 			}
 			oModel.setProperty("/badges", result.results);
 			oModel.setProperty("/avatar", result.avatar);
+
+			// Apply saved filter state after loading badges
+			const savedFilterState = localStorage.getItem("badgeFilterNotReceived");
+			if (savedFilterState === "true") {
+				const table = this.byId("table");
+				const binding = table.getBinding("items");
+				if (binding) {
+					binding.filter(new Filter("found", "EQ", false));
+				}
+			}
+
+			// Apply saved sorting state after loading badges
+			this.restoreSorting();
+
 		} catch (error) {
 			MessageToast.show("Error fetching badges");
 			console.error(error);
@@ -141,6 +168,10 @@ export default class Main extends BaseController {
 		var sAffectedProperty = oSortItem.getKey();
 		var sSortOrder = oSortItem.getSortOrder();
 
+		// Save sorting state to localStorage
+		localStorage.setItem("badgeSortProperty", sAffectedProperty);
+		localStorage.setItem("badgeSortOrder", sSortOrder);
+
 		// sort table binding
 		const binding = oTable.getBinding("items");
 		const sorter = new Sorter(sAffectedProperty, sSortOrder === "Descending");
@@ -150,10 +181,29 @@ export default class Main extends BaseController {
 	onResetSort(event: Event){
 		const oTable = this.byId("table");
 		const binding = oTable.getBinding("items");
+
+		// Clear saved sorting state from localStorage
+		localStorage.removeItem("badgeSortProperty");
+		localStorage.removeItem("badgeSortOrder");
+
 		// default is sort by week and group true
 		const sorter = new Sorter("week", false, true);
 		const sorter2 = new Sorter("date");
 		binding.sort([sorter, sorter2]);
+	}
+
+	restoreSorting() {
+		const savedSortProperty = localStorage.getItem("badgeSortProperty");
+		const savedSortOrder = localStorage.getItem("badgeSortOrder");
+
+		if (savedSortProperty && savedSortOrder) {
+			const oTable = this.byId("table");
+			const binding = oTable.getBinding("items");
+			if (binding) {
+				const sorter = new Sorter(savedSortProperty, savedSortOrder === "Descending");
+				binding.sort(sorter);
+			}
+		}
 	}
 
 	_getKey(oControl) {
