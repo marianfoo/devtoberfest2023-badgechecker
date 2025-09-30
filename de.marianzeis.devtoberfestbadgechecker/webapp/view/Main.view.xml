@@ -72,6 +72,9 @@
 						<Column id="type" width="17%" headerMenu="menu" visible="{= ${device>/system/desktop} }" >
 							<Text text="Type" />
 						</Column>
+						<Column id="description" width="30%" headerMenu="menu" visible="{= ${device>/system/desktop} }" >
+							<Text text="Description" />
+						</Column>
 					</columns>
 
 					<items>
@@ -112,6 +115,7 @@
 									}
 								}" />
 								<Text text="{type}" />
+								<Text text="{description}" wrapping="true" />
 							</cells>
 						</ColumnListItem>
 					</items>

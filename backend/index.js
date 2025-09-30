@@ -57,6 +57,12 @@ app.get('/checkBadges', async (req, res) => {
 
     for (let i = 0; i < allBadges.length; i++) {
       const badge = allBadges[i];
+      
+      // Skip badges with empty or missing displayName
+      if (!badge.displayName || badge.displayName.trim() === '') {
+        continue;
+      }
+      
       const userBadge = userBadges.find(
         (ub) => ub.badge.title === badge.displayName
       );
@@ -80,14 +86,14 @@ app.get('/checkBadges', async (req, res) => {
       let found;
       let points;
       let earnedDate = null;
-      let description = '';
+      // Use description from badges.json
+      let description = badge.Description || '';
       
       if (Date.parse(badge.Date) < endDate) {
         found = !!userBadge;
         points = badge.points;
         if (userBadge) {
           earnedDate = userBadge.earned_date;
-          description = userBadge.badge.description || '';
         }
       } else {
         found = false;
