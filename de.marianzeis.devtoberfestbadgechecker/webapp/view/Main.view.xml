@@ -13,6 +13,7 @@
 				<VBox class="sapUiSmallMarginTop" justifyContent="Center" width="100%" alignItems="Start">
 					<!-- Input field with label in one line -->
 					<FlexBox alignItems="Center" wrap="NoWrap" width="100%" class="sapUiMediumMarginBottom">
+						<Image src="{/avatar}" width="60px" height="60px" class="sapUiSmallMarginEnd" visible="{= ${/avatar} !== '' }" />
 						<Label text="SAP Community ID" class="sapUiSmallMarginEnd" />
 						<Input id="input" value="{/scnId}" placeholder="Enter scnId or scnUsername" width="90%" valueState="None" submit="onGetBadgesPress">
 							<layoutData>
@@ -92,9 +93,13 @@
 										formatter: 'formatter.formatBadgeNameForMobile'
 									}" visible="{= ${badgeURL} === '' }" />
 								</VBox>
-								<FlexBox direction="Column" justifyContent="Center" alignItems="Start" height="100%" class="sapUiContentPadding">
+								<VBox>
 									<ObjectStatus text="{= ${found} ? 'received' : 'not received'}" icon="{= ${found} ? 'sap-icon://sys-enter-2' : 'sap-icon://sys-cancel-2'}" state="{= ${found} ? 'Success' : 'Error'}"/>
-								</FlexBox>
+									<Text text="{
+										path: 'earnedDate',
+										formatter: 'formatter.formatEarnedDate'
+									}" class="sapUiTinyMarginTop" visible="{= ${found} &amp;&amp; ${earnedDate} !== null &amp;&amp; ${device>/system/desktop} }" />
+								</VBox>
 								<Text text="{points}" />
 								<Text text="{
 									path: 'date',

@@ -13,7 +13,7 @@ export default class Main extends BaseController {
 
 	onInit () {
 		// Set initial model
-		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "", currentDate: new Date().toISOString() }));
+		this.getView().setModel(new JSONModel({ badges: [], scnId: "", text: "", currentDate: new Date().toISOString(), avatar: "" }));
 		this.getRouter()
 			.getRoute("main")
 			.attachEventOnce("patternMatched", this.onPatternMatchedOnce, this);
@@ -84,6 +84,7 @@ export default class Main extends BaseController {
 				);
 			}
 			oModel.setProperty("/badges", result.results);
+			oModel.setProperty("/avatar", result.avatar);
 		} catch (error) {
 			MessageToast.show("Error fetching badges");
 			console.error(error);

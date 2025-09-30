@@ -53,6 +53,7 @@ app.get('/checkBadges', async (req, res) => {
     const allBadges = allBadgesResponse.data;
     const userBadges = userProfileResponse.data.badges.data.user_badges.items;
     results;
+    const avatar = userProfileResponse.data.badges.data.avatar?.profile || '';
 
     for (let i = 0; i < allBadges.length; i++) {
       const badge = allBadges[i];
@@ -78,9 +79,16 @@ app.get('/checkBadges', async (req, res) => {
 
       let found;
       let points;
+      let earnedDate = null;
+      let description = '';
+      
       if (Date.parse(badge.Date) < endDate) {
         found = !!userBadge;
         points = badge.points;
+        if (userBadge) {
+          earnedDate = userBadge.earned_date;
+          description = userBadge.badge.description || '';
+        }
       } else {
         found = false;
         points = 0;
@@ -94,6 +102,8 @@ app.get('/checkBadges', async (req, res) => {
         type,
         week,
         date,
+        earnedDate: earnedDate,
+        description: description
       });
     }
 
@@ -102,6 +112,7 @@ app.get('/checkBadges', async (req, res) => {
       level: userProfileResponse.data.level,
       points: userProfileResponse.data.points,
       userName: userProfileResponse.data.userName,
+      avatar: avatar,
     });
   } catch (error) {
     console.error('Error:', error.message);
